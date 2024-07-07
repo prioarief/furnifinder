@@ -12,7 +12,7 @@ export const getMostProductView = async (
 
   try {
     const { data } = await axios.get(
-      `http://34.101.111.183:7777/api/v1/products/popular`
+      `${baseUrl}/api/v1/products/popular`
     );
 
     const { data: newProducts } = data;
