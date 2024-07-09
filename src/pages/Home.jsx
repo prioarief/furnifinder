@@ -85,7 +85,11 @@ const Home = () => {
     <div className="min-h-screen bg-blue-400">
       <header className="flex justify-between items-center p-6 bg-blue-400">
         <div className="text-white text-xl lg:text-2xl font-bold">
-          <img src="https://i.ibb.co.com/p12nxfv/logo-no-background.png" className='lg:w-1/6 w-1/2' alt="" />
+          <img
+            src="https://i.ibb.co.com/p12nxfv/logo-no-background.png"
+            className="lg:w-1/6 w-1/2"
+            alt=""
+          />
         </div>
         <nav className="flex gap-6">
           <button
@@ -103,14 +107,20 @@ const Home = () => {
         </nav>
       </header>
 
-      <section className="hero-section text-white">
-        <div className="max-w-7xl mx-auto text-center px-4">
-          {/* <h1 className="text-4xl lg:text-6xl font-bold">Selamat Datang di FurniFinder</h1> */}
-          <img src="https://i.ibb.co.com/jz50BMC/undraw-relaxing-at-home-re-mror-1.png" className='m-auto w-3/5 h-1/2' alt="" />
-          {/* <p className="text-lg lg:text-2xl mb-8">Temukan furniture terbaik untuk rumahmu</p> */}
-          {/* <a href='' className="bg-white text-blue-400 w-1/2 py-2 px-6 rounded-lg text-lg">Cari furniture</a> */}
-        </div>
-      </section>
+      {search === '' && (
+        <section className="hero-section text-white">
+          <div className="max-w-7xl mx-auto text-center px-4">
+            {/* <h1 className="text-4xl lg:text-6xl font-bold">Selamat Datang di FurniFinder</h1> */}
+            <img
+              src="https://i.ibb.co.com/jz50BMC/undraw-relaxing-at-home-re-mror-1.png"
+              className="m-auto lg:w-3/5 w-full"
+              alt=""
+            />
+            {/* <p className="text-lg lg:text-2xl mb-8">Temukan furniture terbaik untuk rumahmu</p> */}
+            {/* <a href='' className="bg-white text-blue-400 w-1/2 py-2 px-6 rounded-lg text-lg">Cari furniture</a> */}
+          </div>
+        </section>
+      )}
 
       <div className="text-center p-6">
         {/* <h1 className="lg:text-4xl text-2xl text-white font-bold mb-2 font-sans">
@@ -144,6 +154,11 @@ const Home = () => {
                 </svg>
               </div>
               <input
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                  setPage(1);
+                }}
                 type="search"
                 id="default-search"
                 className="block w-full p-4 ps-10 text-sm text-black border border-blue-400 rounded-lg bg-white focus:ring-blue-400 focus:border-blue-400 "
