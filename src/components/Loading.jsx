@@ -1,12 +1,12 @@
-// src/components/LoadingSpinner.js
 import React from 'react';
+import loadingGif from '../assets/load.gif';
 
-const LoadingSpinner = () => {
+const LoadingScreen = () => {
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-75">
+      <img src={loadingGif} alt="Loading..." className="w-1/5" />
     </div>
   );
 };
 
-export default LoadingSpinner;
+export default LoadingScreen;

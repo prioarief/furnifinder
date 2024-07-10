@@ -10,7 +10,7 @@ const Header = ({ children }) => {
     'https://plus.unsplash.com/premium_photo-1670360414483-64e6d9ba9038?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     'https://plus.unsplash.com/premium_photo-1670360414483-64e6d9ba9038?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGhvbWUlMjBkZWNvcnxlbnwwfHwwfHx8MA%3D%3D',
     'https://plus.unsplash.com/premium_photo-1673203734665-0a534c043b7f?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDF8fGhvbWUlMjBkZWNvcnxlbnwwfHwwfHx8MA%3D%3D',
-    'https://images.unsplash.com/photo-1633119712778-30d94755de54?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    'https://images.unsplash.com/photo-1633119712778-30d94755de54?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   ];
 
   const toggleMenu = () => {
@@ -25,8 +25,8 @@ const Header = ({ children }) => {
           (prevIndex) => (prevIndex + 1) % backgroundImages.length
         );
         setIsFading(false);
-      }, 1000); // Duration of fade-out
-    }, 5000); // Change image every 5 seconds
+      }, 1500); // Duration of fade-out
+    }, 7000); // Change image every 5 seconds
 
     return () => clearInterval(interval);
   }, []);
@@ -67,14 +67,20 @@ const Header = ({ children }) => {
           >
             <ul className="flex flex-col lg:flex-row">
               <li className="p-2 lg:p-0 lg:ml-4">
-                <a href="#" className="text-black lg:text-white">
+                <button
+                  onClick={() => alert('coming soon')}
+                  className="text-black lg:text-white"
+                >
                   Blog
-                </a>
+                </button>
               </li>
               <li className="p-2 lg:p-0 lg:ml-4">
-                <a href="#" className="text-black lg:text-white">
+                <button
+                  onClick={() => alert('coming soon')}
+                  className="text-black lg:text-white"
+                >
                   Promo
-                </a>
+                </button>
               </li>
             </ul>
           </nav>

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
-import { getMostProductView, getProducts } from '../utils/api';
-
-import notFoundImg from '../assets/404.png';
-import heroImg from '../assets/hero.png';
-import logoImg from '../assets/new_logo.png';
 import Header from '../components/Header';
+import LoadingScreen from '../components/Loading';
+
+import { getMostProductView, getProducts } from '../utils/api';
+import notFoundImg from '../assets/404.png';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -31,8 +30,16 @@ const Home = () => {
 
   const handleScroll = () => {
     const isEndOfScroll =
-      Math.floor(window.innerHeight + document.documentElement.scrollTop) ===
+      Math.ceil(window.innerHeight + document.documentElement.scrollTop) ===
       document.documentElement.offsetHeight;
+
+    // console.log({
+    //   innerHeight: window.innerHeight,
+    //   screenTop: document.documentElement.scrollTop,
+    //   sum: window.innerHeight + document.documentElement.scrollTop,
+    //   sum_round: Math.floor(window.innerHeight + document.documentElement.scrollTop),
+    //   offsetHeight: document.documentElement.offsetHeight
+    // })
 
     if (isEndOfScroll) {
       setPage((currentPage) => currentPage + 1);
@@ -58,9 +65,13 @@ const Home = () => {
   }, [page]);
 
   useEffect(() => {
-    setTimeout(() => {
-      getProducts(page, search, loading, setLoading, setProducts, setTotalPage);
+    const delayDebounceFn = setTimeout(() => {
+      if (search.length > 0) {
+        getProducts(page, search, loading, setLoading, setProducts, setTotalPage);
+      }
     }, 500);
+
+    return () => clearTimeout(delayDebounceFn);
   }, [search]);
 
   useEffect(() => {
@@ -87,7 +98,7 @@ const Home = () => {
   }, [charIndex, placeholders, placeholderIndex]);
 
   return (
-    <div className="min-h-screen bg-gray-300">
+    <div className="min-h-screen bg-gray-200">
       <Header>
         <div className="text-center p-6">
           <div className="mt-4">
@@ -128,6 +139,8 @@ const Home = () => {
         </div>
       </Header>
 
+      {loading && <LoadingScreen />}
+
       <main className="max-w-7xl mx-auto py-12">
         {search === '' && (
           <section className="p-2 mb-10">
@@ -142,7 +155,7 @@ const Home = () => {
                   onClick={() =>
                     navigate('/detail', { state: { id: item.id } })
                   }
-                  style={{ minWidth: '280px' }}
+                  style={{ minWidth: '160px' }}
                 />
               ))}
             </div>
@@ -158,7 +171,7 @@ const Home = () => {
             />
           ) : (
             <>
-              <h2 className="text-2xl text-black font-bold mb-4">
+              <h2 id='product-list' className="text-2xl text-black font-bold mb-4">
                 Produk Terbaru
               </h2>
               <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
@@ -179,8 +192,7 @@ const Home = () => {
 
       <footer className="bg-gray-800 text-white text-center py-4">
         <p>
-          &copy; {new Date().getFullYear()} Furni Finder By SATSET Team. All
-          rights reserved.
+          &copy; {new Date().getFullYear()} Furni Finder By SATSET Team
         </p>
       </footer>
     </div>

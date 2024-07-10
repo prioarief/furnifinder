@@ -9,11 +9,11 @@ const ProductCard = ({ item, onClick, style }) => {
       onClick={onClick}
       style={style}
     >
-      <div className="h-40 bg-gray-200 flex items-center justify-center rounded-md mb-4">
+      <div className="h-25 bg-gray-200 flex items-center justify-center rounded-md mb-4">
         <img
           src={item.image_url}
           alt={item.name}
-          className="h-5/6 w-5/6 lg:h-full lg:w-full object-cover rounded-md"
+          className="h-full w-full lg:h-full lg:w-full object-cover rounded-md"
         />
       </div>
       <h2 className="text-sm font-bold">{item.name}</h2>
