@@ -26,7 +26,7 @@ const Home = () => {
 
   const handleScroll = () => {
     const isEndOfScroll =
-      window.innerHeight + document.documentElement.scrollTop ===
+      Math.floor(window.innerHeight + document.documentElement.scrollTop) ===
       document.documentElement.offsetHeight;
 
     if (isEndOfScroll) {
