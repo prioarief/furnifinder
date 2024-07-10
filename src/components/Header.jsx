@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Header = ({ children }) => {
+const Header = ({
+  children,
+  title = 'Temukan Furnitur Terbaik Untuk Rumahmu!',
+  subtitle
+}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isFading, setIsFading] = useState(false);
+  const navigate = useNavigate()
 
   const backgroundImages = [
     'https://plus.unsplash.com/premium_photo-1673548917423-073963e7afc9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8ZnVybml0dXJlfGVufDB8fDB8fHww',
@@ -66,15 +72,23 @@ const Header = ({ children }) => {
             } lg:block lg:relative lg:top-0 lg:right-0 lg:bg-transparent lg:shadow-none lg:rounded-none`}
           >
             <ul className="flex flex-col lg:flex-row">
-              <li className="p-2 lg:p-0 lg:ml-4">
+              <li className="p-2 px-5 lg:p-0 lg:ml-4">
                 <button
-                  onClick={() => alert('coming soon')}
+                  onClick={() => navigate('/')}
+                  className="text-black lg:text-white"
+                >
+                  Home
+                </button>
+              </li>
+              <li className="p-2 px-5 lg:p-0 lg:ml-4">
+                <button
+                  onClick={() => navigate('/blog')}
                   className="text-black lg:text-white"
                 >
                   Blog
                 </button>
               </li>
-              <li className="p-2 lg:p-0 lg:ml-4">
+              <li className="p-2 px-5 lg:p-0 lg:ml-4">
                 <button
                   onClick={() => alert('coming soon')}
                   className="text-black lg:text-white"
@@ -86,10 +100,11 @@ const Header = ({ children }) => {
           </nav>
         </div>
         <div className="">
-          <div className="relative z-10 text-white text-center flex items-center justify-center h-full">
-            <h1 className="text-4xl md:text-5xl font-bold">
-              Temukan Furnitur Terbaik Untuk Rumahmu!
-            </h1>
+          <div className="relative z-10 text-white text-center flex flex-col items-center justify-center h-full">
+            <h1 className="text-4xl md:text-5xl font-bold">{title}</h1>
+            {subtitle && <h2 className="text-md lg:text-2xl text-white font-bold p-6 lg:mx-44">
+            {subtitle}
+          </h2>}
           </div>
           {children}
         </div>
