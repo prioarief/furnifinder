@@ -97,7 +97,7 @@ const ProductDetail = () => {
                   // onClick={() => (window.location.href = product.url)}
                   className="mt-50 bg-blue-400 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200"
                 >
-                  Buy Now
+                  Beli Sekarang
                 </a>
               </>
             )}
