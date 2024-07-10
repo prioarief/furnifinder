@@ -39,7 +39,7 @@ export const getProducts = async (
   try {
     const config = {
       params: {
-        limit: 12,
+        limit: 15,
         page,
         ...(search !== '' && { keyword: search }),
       },

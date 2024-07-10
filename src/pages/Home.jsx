@@ -28,28 +28,28 @@ const Home = () => {
 
   const navigate = useNavigate();
 
-  const handleScroll = () => {
-    const isEndOfScroll =
-      Math.ceil(window.innerHeight + document.documentElement.scrollTop) ===
-      document.documentElement.offsetHeight;
+  // const handleScroll = () => {
+  //   const isEndOfScroll =
+  //     Math.ceil(window.innerHeight + document.documentElement.scrollTop) ===
+  //     document.documentElement.offsetHeight;
 
-    // console.log({
-    //   innerHeight: window.innerHeight,
-    //   screenTop: document.documentElement.scrollTop,
-    //   sum: window.innerHeight + document.documentElement.scrollTop,
-    //   sum_round: Math.floor(window.innerHeight + document.documentElement.scrollTop),
-    //   offsetHeight: document.documentElement.offsetHeight
-    // })
+  //   // console.log({
+  //   //   innerHeight: window.innerHeight,
+  //   //   screenTop: document.documentElement.scrollTop,
+  //   //   sum: window.innerHeight + document.documentElement.scrollTop,
+  //   //   sum_round: Math.floor(window.innerHeight + document.documentElement.scrollTop),
+  //   //   offsetHeight: document.documentElement.offsetHeight
+  //   // })
 
-    if (isEndOfScroll) {
-      setPage((currentPage) => currentPage + 1);
-    }
-  };
+  //   if (isEndOfScroll) {
+  //     setPage((currentPage) => currentPage + 1);
+  //   }
+  // };
 
   useEffect(() => {
     getMostProductView(loading, setLoading, setMostViewedItems);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    // window.addEventListener('scroll', handleScroll);
+    // return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
@@ -67,7 +67,14 @@ const Home = () => {
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       if (search.length > 0) {
-        getProducts(page, search, loading, setLoading, setProducts, setTotalPage);
+        getProducts(
+          page,
+          search,
+          loading,
+          setLoading,
+          setProducts,
+          setTotalPage
+        );
       }
     }, 500);
 
@@ -171,7 +178,10 @@ const Home = () => {
             />
           ) : (
             <>
-              <h2 id='product-list' className="text-2xl text-black font-bold mb-4">
+              <h2
+                id="product-list"
+                className="text-2xl text-black font-bold mb-4"
+              >
                 Produk Terbaru
               </h2>
               <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
@@ -188,12 +198,18 @@ const Home = () => {
             </>
           )}
         </section>
+        {page < totalPage && <div className="flex m-auto mt-5">
+          <button
+            onClick={() => setPage((prevPage) => prevPage + 1)}
+            className="m-auto outline outline-offset-2 outline-gray-800 text-black py-2 px-4 rounded hover:bg-gray-800 hover:text-white transition duration-200"
+          >
+            Lebih Banyak
+          </button>
+        </div>}
       </main>
 
       <footer className="bg-gray-800 text-white text-center py-4">
-        <p>
-          &copy; {new Date().getFullYear()} Furni Finder By SATSET Team
-        </p>
+        <p>&copy; {new Date().getFullYear()} Furni Finder By SATSET Team</p>
       </footer>
     </div>
   );
