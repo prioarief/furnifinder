@@ -1,5 +1,3 @@
-// src/Header.js
-
 import React, { useEffect, useState } from 'react';
 
 const Header = ({ children }) => {
@@ -10,10 +8,9 @@ const Header = ({ children }) => {
   const backgroundImages = [
     'https://plus.unsplash.com/premium_photo-1673548917423-073963e7afc9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8ZnVybml0dXJlfGVufDB8fDB8fHww',
     'https://plus.unsplash.com/premium_photo-1670360414483-64e6d9ba9038?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    'https://plus.unsplash.com/premium_photo-1670360414946-e33a828d1d52?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8aG9tZSUyMGRlY29yfGVufDB8fDB8fHww',
     'https://plus.unsplash.com/premium_photo-1670360414483-64e6d9ba9038?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGhvbWUlMjBkZWNvcnxlbnwwfHwwfHx8MA%3D%3D',
     'https://plus.unsplash.com/premium_photo-1673203734665-0a534c043b7f?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDF8fGhvbWUlMjBkZWNvcnxlbnwwfHwwfHx8MA%3D%3D',
-    'https://images.unsplash.com/photo-1714837291207-4985c06c9a60?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDR8fGhvbWUlMjBkZWNvcnxlbnwwfHwwfHx8MA%3D%3D'
+    'https://images.unsplash.com/photo-1633119712778-30d94755de54?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
   ];
 
   const toggleMenu = () => {
