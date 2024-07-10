@@ -3,6 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import { getMostProductView, getProducts } from '../utils/api';
 
+import notFoundImg from '../assets/404.png'
+import heroImg from '../assets/hero.png'
+import logoImg from '../assets/new_logo.png'
+
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [mostViewedItems, setMostViewedItems] = useState([]);
@@ -86,8 +90,8 @@ const Home = () => {
       <header className="flex justify-between items-center p-6 bg-blue-400">
         <div className="text-white text-xl lg:text-2xl font-bold">
           <img
-            src="https://i.ibb.co.com/p12nxfv/logo-no-background.png"
-            className="lg:w-1/6 w-1/2"
+            src={logoImg}
+            className="lg:w-1/4 w-3/5"
             alt=""
           />
         </div>
@@ -112,7 +116,7 @@ const Home = () => {
           <div className="max-w-7xl mx-auto text-center px-4">
             {/* <h1 className="text-4xl lg:text-6xl font-bold">Selamat Datang di FurniFinder</h1> */}
             <img
-              src="https://i.ibb.co.com/jz50BMC/undraw-relaxing-at-home-re-mror-1.png"
+              src={heroImg}
               className="m-auto lg:w-3/5 w-full"
               alt=""
             />
@@ -205,7 +209,7 @@ const Home = () => {
         <section className="p-2">
           {products.length < 1 ? (
             <img
-              src="https://i.ibb.co/0m7rv6C/404.png"
+              src={notFoundImg}
               className="m-auto h-2/4 w-2/4"
               alt="Not Found"
             />
