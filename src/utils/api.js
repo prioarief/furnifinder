@@ -79,3 +79,41 @@ export const getProductDetail = async (id, loading, setLoading, setProduct) => {
     setLoading(false);
   }
 };
+
+export const getBlogs = async (
+  page,
+  search,
+  loading,
+  setLoading,
+  setBlogs,
+  setTotalPage,
+  append = false
+) => {
+  if (loading) return;
+  setLoading(true);
+
+  try {
+    const config = {
+      params: {
+        limit: 15,
+        page,
+        ...(search !== '' && { keyword: search }),
+      },
+    };
+
+    const { data } = await axios.get(
+      `${baseUrl}/api/v1/blogs`,
+      config
+    );
+
+    const { data: newBlogs, total_page } = data;
+    setBlogs((prevBlogs) =>
+      !append ? newBlogs : [...prevBlogs, ...newBlogs]
+    );
+    setTotalPage(total_page);
+  } catch (error) {
+    console.error('Error fetching Blogs:', error);
+  } finally {
+    setLoading(false);
+  }
+};

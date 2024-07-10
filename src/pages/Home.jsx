@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ProductCard from '../components/ProductCard';
 import Header from '../components/Header';
 import LoadingScreen from '../components/Loading';
+import ProductCard from '../components/ProductCard';
 
-import { getMostProductView, getProducts } from '../utils/api';
 import notFoundImg from '../assets/404.png';
+import Footer from '../components/Footer';
+import { getMostProductView, getProducts } from '../utils/api';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -212,9 +213,7 @@ const Home = () => {
         )}
       </main>
 
-      <footer className="bg-gray-800 text-white text-center py-4">
-        <p>&copy; {new Date().getFullYear()} Furni Finder By SATSET Team</p>
-      </footer>
+      <Footer />
     </div>
   );
 };

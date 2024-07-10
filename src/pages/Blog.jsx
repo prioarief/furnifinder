@@ -1,27 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ProductCard from '../components/ProductCard';
 import Header from '../components/Header';
 import LoadingScreen from '../components/Loading';
 
-import { getMostProductView, getProducts } from '../utils/api';
 import notFoundImg from '../assets/404.png';
+import BlogCard from '../components/BlogCard';
+import { getBlogs } from '../utils/api';
+import Footer from '../components/Footer';
 
 const Blog = () => {
-  const [products, setProducts] = useState([]);
-  const [mostViewedItems, setMostViewedItems] = useState([]);
+  const [Blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
   const [totalPage, setTotalPage] = useState(1);
 
   const placeholders = [
-    'Lampu belajar',
-    'Perabot ruang tv',
-    'Perlengkapan makan',
-    'Mainan anak',
-    'Selimut',
-    'Gorden',
+    'Kamar tidur',
+    'Ruang keluarga',
+    'Meja belajar',
   ];
 
   const [displayedText, setDisplayedText] = useState('');
@@ -31,34 +28,13 @@ const Blog = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    getMostProductView(loading, setLoading, setMostViewedItems);
-    // window.addEventListener('scroll', handleScroll);
-    // return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    getProducts(
-      page,
-      search,
-      loading,
-      setLoading,
-      setProducts,
-      setTotalPage,
-      true
-    );
+    getBlogs(page, search, loading, setLoading, setBlogs, setTotalPage, true);
   }, [page]);
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       if (search.length > 0) {
-        getProducts(
-          page,
-          search,
-          loading,
-          setLoading,
-          setProducts,
-          setTotalPage
-        );
+        getBlogs(page, search, loading, setLoading, setBlogs, setTotalPage);
       }
     }, 500);
 
@@ -96,13 +72,51 @@ const Blog = () => {
             informatif tentang tren desain terbaru, tips memilih furniture yang
             tepat, serta panduan merawat dan menata ruangan agar tampil estetis
             dan fungsional."
-      />
+      >
+        <div className="text-center p-6">
+          <div className="mt-4">
+            <form className="max-w-md mx-auto">
+              <div className="relative">
+                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                  <svg
+                    className="w-4 h-4 text-white"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                    />
+                  </svg>
+                </div>
+                <input
+                  value={search}
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                    setPage(1);
+                  }}
+                  type="search"
+                  id="default-search"
+                  className="block w-full p-4 ps-10 text-sm text-white border-2 placeholder-white border-white rounded-lg bg-transparent focus:border-white "
+                  placeholder={displayedText}
+                  required
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </Header>
 
       {loading && <LoadingScreen />}
 
       <main className="max-w-7xl mx-auto py-12">
         <section className="p-2">
-          {products.length < 1 ? (
+          {Blogs.length < 1 ? (
             <img
               src={notFoundImg}
               className="m-auto h-2/4 w-2/4"
@@ -110,15 +124,9 @@ const Blog = () => {
             />
           ) : (
             <>
-              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3">
-                {products.map((item, i) => (
-                  <ProductCard
-                    item={item}
-                    key={i}
-                    onClick={() =>
-                      navigate('/detail', { state: { id: item.id } })
-                    }
-                  />
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3">
+                {Blogs.map((item, i) => (
+                  <BlogCard item={item} key={i} />
                 ))}
               </div>
             </>
@@ -136,9 +144,7 @@ const Blog = () => {
         )}
       </main>
 
-      <footer className="bg-gray-800 text-white text-center py-4">
-        <p>&copy; {new Date().getFullYear()} Furni Finder By SATSET Team</p>
-      </footer>
+      <Footer />
     </div>
   );
 };
